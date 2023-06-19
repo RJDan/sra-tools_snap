@@ -1,59 +1,69 @@
 name: rjd-plink
 title: rjd-plink
-version: '1.90p' # just for humans, typically '1.2+git' or '1.3.2'
+version: '1.90b5' # just for humans, typically '1.2+git' or '1.3.2'
 summary:  PLINK command-line program for genomics
 description: |
-      " Comprehensive update to Shaun Purcell's PLINK command-line program."
-     *  The description above refers to the software: https://www.cog-genomics.org/plink/1.9/
-      * I have packaged the software as a snap for **personal use** but I have made the snap available for free.
-      * I do not maintain the software itself. I only maintain the snap packaging. Please report software bugs to the maintainers.
-      * Report snap-specific bugs to me.
-        * I _DO_ use this snap. It _has been superficially tested_ on my system. I __do not__ track the latest version.
-        * __This snap works in devmode only.__
-        * Packaging 'style' : tarball build for linux machines.
-        * License refers to the original software, not the snapcraft 'code'.
-        * More info:
-        * Run the following to rename the snap ```sudo snap alias rjd-plink.plink plink```
+          " Comprehensive update to Shaun Purcell's PLINK command-line program."
+          *  The description above refers to the software: https://www.cog-genomics.org/plink/1.9/
+          * I have packaged the software as a snap for **personal use** but I have made the snap available for free.
+          * I do not maintain the software itself. I only maintain the snap packaging. Please report software bugs to the maintainers.
+          * Report snap-specific bugs to me.
+            * I _DO_ use this snap. It _has been superficially tested_ on my system. I __do not__ track the latest version.
+            * __The snap has not been fully tested__
+            * Packaging 'style' : tarball build for linux machines.
+            * License refers to the original software, not the snapcraft 'code'.
+            * More info:
+            * Run the following to rename the snap
+            ```sudo snap alias rjd-plink.plink plink```
 
 website: https://github.com/RJDan/plink1.9_snap
 source-code : https://github.com/RJDan/plink1.9_snap
 icon: Icon_230417.svg
 
-# adopt-info: plink # For github builds with pull override
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict # use 'strict' once you have the right plugs and slots
 license: GPL-3.0-only
-base: core20 # the base snap is the execution environment for this snap
+base: core22 # the base snap is the execution environment for this snap
 
 apps:
     plink:
-        command: plink
+        command: /usr/local/bin/plink
         plugs:
           - home
-          - network
-          - removable-media
+#          - network
+#          - removable-media
 #          - x11
 #          - wayland
 #          - desktop
 #          - desktop-legacy
 #          - unity7
-
-environment:
-  # XDG config
-  XDG_CACHE_HOME:  $SNAP_USER_COMMON/.cache
-  XDG_CONFIG_HOME: $SNAP_USER_DATA/.config
-
+        environment:
+            # XDG config
+            # XDG_CACHE_HOME:  $SNAP_USER_COMMON/.cache
+            # XDG_CONFIG_HOME: $SNAP_USER_DATA/.config
+            LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/lapack:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/blas
+#            LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/x86_64-linux-gnu/blas:$SNAP/usr/lib/x86_64-linux-gnu/lapack
 # The `layout` ensures that files can be found by applications where they are expected by the toolkit or application.
-layout:
-  # Other, generally useful paths
-  /etc/fonts:
-    bind: $SNAP/etc/fonts
-  /usr/share/fonts:
-    bind: $SNAP/usr/share/fonts
-  /usr/share/icons:
-    bind: $SNAP/usr/share/icons
+    # layout:
+      #   # Other, generally useful paths
+      #   /etc/fonts:
+      #     bind: $SNAP/etc/fonts
+      #   /usr/share/fonts:
+      #     bind: $SNAP/usr/share/fonts
+      #   /usr/share/icons:
+      #     bind: $SNAP/usr/share/icons
+      #   /usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/lapack:
+      #     bind: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/lapack
+      #   /usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/blas:
+      #     bind: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/blas
+
 
 parts:
+    # zlib:
+    #     source: https://github.com/madler/zlib.git
+    #     source-type: git
+    #     source-tag: "04f42ce"
+    #     plugin: git
     plink:
         source: https://github.com/chrchang/plink-ng.git
         source-type: git
@@ -61,67 +71,56 @@ parts:
         plugin: make
         make-parameters:
               - LDFLAGS="-pthread  -lpthread"
-              - LDLIBS=" -lpthread "
-              - CFLAGS="-pthread "
-               - -f Makefile.std plink
-#        plugin: dump
-#        source:  https://s3.amazonaws.com/plink1-assets/dev/plink_linux_x86_64.zip
-#        source:  ./
-#        override-pull: | # Useful for github builds, extracts meta info
-          # snapcraftctl pull
-          # last_committed_tag="$(git describe --tags --abbrev=0)"
-          # last_committed_tag_ver="$(echo ${last_committed_tag} | sed 's/v//')"
-          # last_released_tag="$(snap info plink | awk '$1 == "latest/beta:" { print $2 }')"
-          # # If the latest tag from the upstream project has not been released to
-          # # beta, build that tag instead of master.
-          # if [ "${last_committed_tag_ver}" != "${last_released_tag}" ]; then
-          #   git fetch
-          #   git checkout "${last_committed_tag}"
-          # fi
-          # snapcraftctl set-version "$(git describe --tags | sed 's/v//')"
+#              - LDLIBS=" -lpthread "
+#              - CFLAGS="-pthread "
+              - -f Makefile.std plink # Makefile.std was the make file for zlib 1.2.11, which is also the PPA version
         build-packages:
-                - curl
+#                - curl # see if I can get away without specifying this
+                - libatlas-base-dev # Automatically Tuned Linear Algebra Software, generic static
+#                - libatlas-dev # I guess replaced by libatlas-base-dev
                 - libblas-dev #Basic Linear Algebra Subroutines 3, static library
+                - libc6-dev
                 - liblapack-dev #Library of linear algebra routines 3 - static version
                 - liblapacke-dev #Library of linear algebra routines 3 () - Headers
                 - libtmglib-dev #test matrix generators of LAPACK - development files
-                - libatlas-base-dev # Automatically Tuned Linear Algebra Software, generic static
-#                - libatlas-dev # I guess replaced by libatlas-base-dev
-#            glibc-devel
+#                - make # see if I can get away without specifying this
+                - zlib1g-dev
         stage-packages:
+             - gfortran
+             - cfortran
              - libatlas-doc #Automatically Tuned Linear Algebra Software, documentation
              - libatlas3-base #Automatically Tuned Linear Algebra Software, generic shared
              - libblas3 #Basic Linear Algebra Reference implementations, shared library
+             - libc6 #Automatically Tuned Linear Algebra Software, documentation
+             - libgfortran5 # Recommended by snapcraft
              - liblapack-doc #Library of linear algebra routines 3 - documentation
              - liblapack3 #Library of linear algebra routines 3 - shared version
              - liblapacke #Library of linear algebra routines 3 - C lib shared version
-             - libtmglib3 #test matrix generators of LAPACK - shared version
-             - libgfortran5 # Recommended by snapcraft
              - libquadmath0 # Recommended by snapcraft
-#             - zlib1g
+             - libtmglib3 #test matrix generators of LAPACK - shared version
+             - zlib1g
+#             - cpp-12 # see if I can get away without specifying this
+#             - g++-12 # see if I can get away without specifying this
+#             - gcc-12 # see if I can get away without specifying this
+#             - libstdc++6 # see if I can get away without specifying this
+        # override-pull: |
+        #               snapcraftctl pull
+        #               echo ${PWD}
+        #               cd ${SNAPCRAFT_PART_BUILD}/
+        #               cd ../
+        #               curl -O http://zlib.net/fossils/zlib-1.2.11.tar.gz
+        #                   # Unpack and compile zlib
+        #               tar -xzvf zlib-1.2.11.tar.gz
+        #               cd zlib-1.2.11
+        #               ./configure
+        #               make
         override-build: |
-                      cd ${SNAPCRAFT_PART_SRC}/
-                      curl -O http://zlib.net/fossils/zlib-1.2.11.tar.gz
-                      # Download zlib into parent directory, and verify
-                        #EXPECTEDCHECKSUM=207ba741d387e2c1607104cf0bd8cff27deb2605
-                        #CHECKSUM=$(shasum zlib-1.2.11.tar.gz | cut -b-40)
-                        #if [ "$EXPECTEDCHECKSUM" != "$CHECKSUM" ]; then
-                            #echo "Zlib checksum verification failure"
-                            #exit 1
-                        #fi;
-                          # Unpack and compile zlib
-                          tar -xzvf zlib-1.2.11.tar.gz
-                          cd zlib-1.2.11
-                          ./configure
-                          make
-                          # Compile
-                          #cd ${SNAPCRAFT_PART_SRC}/1.9/
-                          cd ${CRAFT_PROJECT_DIR}/
-                          snapcraft build
-                          #LDFLAGS="-pthread  -lpthread"
-                          #make -f Makefile.std plink
-                          #cp ${SNAPCRAFT_PART_SRC}/1.9/plink ${SNAPCRAFT_PART_SRC}/1.9/toy.ped ${SNAPCRAFT_PART_SRC}/1.9/toy.map ${SNAPCRAFT_PART_INSTALL}/
-        # filesets:
+                     ## Compile
+                     mv ${SNAPCRAFT_PART_BUILD}/1.9/* ${SNAPCRAFT_PART_BUILD}/
+                     ls ${SNAPCRAFT_PART_BUILD}/Makefile.*
+                     snapcraftctl build
+#                     ln -sf ../libpsm1/libpsm_infinipath.so.1.16  $SNAPCRAFT_PART_INSTALL/
+      #filesets:
         #       plink.out:
         #                   - toy.map
         #                   - toy.ped
@@ -133,55 +132,3 @@ parts:
         organize:
             "Icon_230417.svg" : snap/Icon_230417.svg
             "bin/plink" : /usr/local/bin/plink
-
-#    libatlas-test #Automatically Tuned Linear Algebra Software, test programs
-#    libatlas-test-dbgsym debug symbols for libatlas-test
-#    libatlas3-base-dbgsym debug symbols for libatlas3-base
-    # glibc-doc GNU C Library: Documentation
-    # libc-bin GNU C Library: Binaries
-    # libc-dev-bin GNU C Library: Development binaries
-    # libc-devtools GNU C Library: Development tools
-    # libc6 GNU C Library: Shared libraries
-    # libc6-amd64 GNU C Library: 64bit Shared libraries for AMD64
-    # libc6-dev GNU C Library: Development Libraries and Header Files
-    # libc6-dev-amd64 GNU C Library: 64bit Development Libraries for AMD64
-    # libc6-dev-i386 GNU C Library: 32-bit development libraries for AMD64
-    # libc6-dev-s390 GNU C Library: 32bit Development Libraries for IBM zSeries
-    # libc6-dev-x32 GNU C Library: X32 ABI Development Libraries for AMD64
-    # libc6-i386 GNU C Library: 32-bit shared libraries for AMD64
-    # libc6-i386-dbgsym debug symbols for libc6-i386
-    # libc6-prof GNU C Library: Shared Libraries
-    # libc6-s390 GNU C Library: 32bit Shared libraries for IBM zSeries
-    # libc6-s390-dbgsym debug symbols for libc6-s390
-    # libc6-x32 GNU C Library: X32 ABI Shared libraries for AMD64
-    # libc6-x32-dbgsym debug symbols for libc6-x32
-    # locales GNU C Library: National Language (locale) data [support]
-    # locales-all GNU C Library: Precompiled locale data
-    # nscd GNU C Library: Name Service Cache Daemon
-    #  nscd-dbgsym debug symbols for nscd
-
-    # libblas-test Basic Linear Algebra Subroutines 3, testing programs
-    # libblas-test-dbgsym debug symbols for libblas-test
-    # libblas3-dbgsym debug symbols for libblas3
-    # libblas64-3 Basic Linear Algebra Reference implementations, shared library (64bit-index)
-    # libblas64-3-dbgsym debug symbols for libblas64-3
-    # libblas64-dev Basic Linear Algebra Subroutines 3, static library (64bit-index)
-    # libblas64-test Basic Linear Algebra Subroutines 3, testing programs (64bit-index)
-    # libblas64-test-dbgsym debug symbols for libblas64-test
-    # liblapack-pic Library of linear algebra routines 3 - transitional
-    # liblapack-test Library of linear algebra routines 3 - testing programs
-    # liblapack-test-dbgsym debug symbols for liblapack-test
-    # liblapack3-dbgsym debug symbols for liblapack3
-    # liblapack64-3 Library of linear algebra routines 3 - shared version (64bit-index)
-    # liblapack64-3-dbgsym debug symbols for liblapack64-3
-    # liblapack64-dev Library of linear algebra routines 3 - static version (64bit-index)
-    # liblapack64-test Library of linear algebra routines 3 - testing programs (64bit-index)
-    # liblapack64-test-dbgsym debug symbols for liblapack64-test
-    # liblapacke-dbgsym debug symbols for liblapacke
-    # liblapacke64 Library of linear algebra routines 3 - C lib shared version (64bit-index)
-    # liblapacke64-dbgsym debug symbols for liblapacke64
-    # liblapacke64-dev Library of linear algebra routines 3 - Headers (64bit-index)
-    # libtmglib3-dbgsym debug symbols for libtmglib3
-    # libtmglib64-3 test matrix generators of LAPACK - shared version (64bit-index)
-    # libtmglib64-3-dbgsym debug symbols for libtmglib64-3
-    # libtmglib64-dev test matrix generators of LAPACK - development files (64bit-index)
