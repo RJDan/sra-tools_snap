@@ -26,148 +26,111 @@ license: GPL-3.0-only
 base: core22 # the base snap is the execution environment for this snap
 
 apps:
-    plink:
+    sra-tools:
         command: /usr/local/bin/sra-tools
         plugs:
           - home
           - network
           - removable-media
-#        environment:
+        environment:
             # XDG config
             # XDG_CACHE_HOME:  $SNAP_USER_COMMON/.cache
             # XDG_CONFIG_HOME: $SNAP_USER_DATA/.config
 #            LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/lapack:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/blas
+            JAVA_HOME: $SNAP/usr/lib/jvm/java-17-openjdk-${SNAPCRAFT_TARGET_ARCH}
+            JAVA_TOOL_OPTIONS: "-Duser.home=$SNAP_USER_COMMON"
+            PATH: $JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
+#            VDB_BINDIR: ${STAGE}/ # where the output should be available during the build
+            VDB_BINDIR: ${SNAP}/usr/local/include/ # where I found the binaries
+#            VDB_INCDIR: ${SNAP}/parts/sra-tools/src/../ncbi-vdb/interfaces
+            VDB_INCDIR: ${SNAP}/usr/local/include/
+            VDB_LIBDIR: ${STAGE}/usr/local/include/  #this looks like the place where vdb libs were placed
+#            NCBI_VDB_LIBDIR:   # must point to installed libraries
+#Please specify the location of an ncbi-vdb build in Cmake variable VDB_BINDIR. It is expected to contain one or both subdirectories Debug/ and Release/, with bin/, lib/ and ilib/ underneath each.
+
+CMakeLists.txt:set( VDB_BINDIR "${CMAKE_BINARY_DIR}/../ncbi-vdb" CACHE PATH "Location of NCBI VDB build directory" )
+CMakeLists.txt:set( VDB_INCDIR "${CMAKE_SOURCE_DIR}/../ncbi-vdb/interfaces" CACHE PATH "Location of NCBI VDB include directory" )
+
+build/env.cmake:    set( NCBI_VDB_BINDIR_DEBUG ${VDB_BINDIR}/Debug/bin )
+build/env.cmake:    set( NCBI_VDB_BINDIR_RELEASE ${VDB_BINDIR}/Release/bin )
+build/env.cmake:    set( NCBI_VDB_LIBDIR_DEBUG ${VDB_BINDIR}/Debug/lib )
+build/env.cmake:    set( NCBI_VDB_LIBDIR_RELEASE ${VDB_BINDIR}/Release/lib )
+build/env.cmake:    set( NCBI_VDB_ILIBDIR_DEBUG ${VDB_BINDIR}/Debug/ilib )
+build/env.cmake:    set( NCBI_VDB_ILIBDIR_RELEASE ${VDB_BINDIR}/Release/ilib )
+
+tools2/shared/cmake/Findncbi-vdb.cmake:find_library (NCBI_VDB_LIB "ncbi-vdb" ENV NCBI_VDB_LIBDIR)
+tools2/shared/cmake/Findncbi-vdb.cmake:if (NCBI_VDB_LIB MATCHES NCBI_VDB_LIB-NOTFOUND)
+tools2/shared/cmake/Findncbi-vdb.cmake:    find_library (NCBI_VDB_LIB "ncbi-vdb" PATHS "/usr/local/ncbi" "$ENV{HOME}/usr/local/ncbi" "$ENV{HOME}/ncbi" NO_DEFAULT_PATH)
+tools2/shared/cmake/Findncbi-vdb.cmake:if (NCBI_VDB_LIB MATCHES NCBI_VDB_LIB-NOTFOUND)
+tools2/shared/cmake/Findncbi-vdb.cmake:    set (NCBI_VDB_LIB_DIR_ROOT "$ENV{HOME}/ncbi-outdir/ncbi-vdb/${NCBI_VDB_SYSTEM_NAME}/${NCBI_VDB_COMPILER_NAME}/x86_64/")
+tools2/shared/cmake/Findncbi-vdb.cmake:        set (NCBI_VDB_LIB_DIRS "${NCBI_VDB_LIB_DIR_ROOT}/dbg/lib" "${NCBI_VDB_LIB_DIR_ROOT}/rel/lib")
+tools2/shared/cmake/Findncbi-vdb.cmake:        set (NCBI_VDB_LIB_DIRS "${NCBI_VDB_LIB_DIR_ROOT}/rel/lib" "${NCBI_VDB_LIB_DIR_ROOT}/dbg/lib")
+
+
 # The `layout` ensures that files can be found by applications where they are expected by the toolkit or application.
-    # layout:
-      #   # Other, generally useful paths
-      #   /etc/fonts:
-      #     bind: $SNAP/etc/fonts
-      #   /usr/share/fonts:
-      #     bind: $SNAP/usr/share/fonts
-      #   /usr/share/icons:
-      #     bind: $SNAP/usr/share/icons
-      #   /usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/lapack:
-      #     bind: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/lapack
-      #   /usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/blas:
-      #     bind: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/blas
+#    layout:
+    #     # # Other, generally useful paths
+    #     # /etc/fonts:
+    #     #   bind: $SNAP/etc/fonts
+    #     # /usr/share/fonts:
+    #     #   bind: $SNAP/usr/share/fonts
+    #     # /usr/share/icons:
+    #     #   bind: $SNAP/usr/share/icons
+    #     # /usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/lapack:
+    #     #   bind: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/lapack
+    #     # /usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/blas:
+    #     #   bind: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/blas
+    #     /usr/bin/python:
+    #       bind: $SNAP/usr/bin/python
+
 
 parts:
     ncbi-vdb:
         source:  https://github.com/ncbi/ncbi-vdb.git
         source-type: git
-        source-tag: "44cdea5"
-        plugin: autotools
-#         make-parameters:
+        source-tag: '3.0.5' # "44cdea5" #
+#        source-tag: "c4aa196" # 3.0.2
+        plugin: cmake
+#         cmake-parameters:
 # #              - -all # specify nothing to build the default toolkit user-facing parts
 #               - -all # to build all the components
         build-packages:
-                - libatlas-base-dev # Automatically Tuned Linear Algebra Software, generic static
-                - libblas-dev #Basic Linear Algebra Subroutines 3, static library
                 - libc6-dev
-                - liblapack-dev #Library of linear algebra routines 3 - static version
-                - liblapacke-dev #Library of linear algebra routines 3 () - Headers
-                - libtmglib-dev #test matrix generators of LAPACK - development files
                 - zlib1g-dev
+                - less
+                - tree
         stage-packages:
-             - gfortran
-             - cfortran
              - libc6 #Automatically Tuned Linear Algebra Software, documentation
-             # - libatlas-doc #Automatically Tuned Linear Algebra Software, documentation
-             # - libatlas3-base #Automatically Tuned Linear Algebra Software, generic shared
-             # - libblas3 #Basic Linear Algebra Reference implementations, shared library
-             # - libgfortran5 # Recommended by snapcraft
-             # - liblapack-doc #Library of linear algebra routines 3 - documentation
-             # - liblapack3 #Library of linear algebra routines 3 - shared version
-             # - liblapacke #Library of linear algebra routines 3 - C lib shared version
-             # - libquadmath0 # Recommended by snapcraft
-             # - libtmglib3 #test matrix generators of LAPACK - shared version
-             # - zlib1g
-        # override-pull: |
-        #               snapcraftctl pull
-        #               echo ${PWD}
-        #               cd ${SNAPCRAFT_PART_BUILD}/
-        #               cd ../
-        #               curl -O http://zlib.net/fossils/zlib-1.2.11.tar.gz
-        #                   # Unpack and compile zlib
-        #               tar -xzvf zlib-1.2.11.tar.gz
-        #               cd zlib-1.2.11
-        #               ./configure
-        #               make
-        # override-build: |
-        #              ## Compile
-        #              mv ${SNAPCRAFT_PART_BUILD}/1.9/* ${SNAPCRAFT_PART_BUILD}/
-        #              #ls ${SNAPCRAFT_PART_BUILD}/Makefile.*
-        #              sed -i -e "s:../zlib-1.2.11/:$SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/zlib-1.2.12/:g" ${SNAPCRAFT_PART_BUILD}/*plink*
-        #              snapcraftctl build
-#                     ln -sf ../libpsm1/libpsm_infinipath.so.1.16  $SNAPCRAFT_PART_INSTALL/
-      #filesets:
-        #       plink.out:
-        #                   - toy.map
-        #                   - toy.ped
-        #                   - plink
-        # stage:
-        #   - $plink.out
-        # prime:
-        #   - $plink.out
-        # organize:
-        #     "bin/plink" : /usr/local/bin/plink
-#     sra-tools:
-#         source:  https://github.com/ncbi/sra-tools.git
-#         source-type: git
-#         source-tag: "313b45f"
-#         plugin: autotools
-#         make-parameters:
-# #              - -all # specify nothing to build the default toolkit user-facing parts
-#               - -all # to build all the components
-#         build-packages:
-#                 - libatlas-base-dev # Automatically Tuned Linear Algebra Software, generic static
-#                 - libblas-dev #Basic Linear Algebra Subroutines 3, static library
-#                 - libc6-dev
-#                 - liblapack-dev #Library of linear algebra routines 3 - static version
-#                 - liblapacke-dev #Library of linear algebra routines 3 () - Headers
-#                 - libtmglib-dev #test matrix generators of LAPACK - development files
-#                 - zlib1g-dev
-#         stage-packages:
-#              - gfortran
-#              - cfortran
-#              - libc6 #Automatically Tuned Linear Algebra Software, documentation
-#              # - libatlas-doc #Automatically Tuned Linear Algebra Software, documentation
-#              # - libatlas3-base #Automatically Tuned Linear Algebra Software, generic shared
-#              # - libblas3 #Basic Linear Algebra Reference implementations, shared library
-#              # - libgfortran5 # Recommended by snapcraft
-#              # - liblapack-doc #Library of linear algebra routines 3 - documentation
-#              # - liblapack3 #Library of linear algebra routines 3 - shared version
-#              # - liblapacke #Library of linear algebra routines 3 - C lib shared version
-#              # - libquadmath0 # Recommended by snapcraft
-#              # - libtmglib3 #test matrix generators of LAPACK - shared version
-#              # - zlib1g
-#         # override-pull: |
-#         #               snapcraftctl pull
-#         #               echo ${PWD}
-#         #               cd ${SNAPCRAFT_PART_BUILD}/
-#         #               cd ../
-#         #               curl -O http://zlib.net/fossils/zlib-1.2.11.tar.gz
-#         #                   # Unpack and compile zlib
-#         #               tar -xzvf zlib-1.2.11.tar.gz
-#         #               cd zlib-1.2.11
-#         #               ./configure
-#         #               make
-#         # override-build: |
-#         #              ## Compile
-#         #              mv ${SNAPCRAFT_PART_BUILD}/1.9/* ${SNAPCRAFT_PART_BUILD}/
-#         #              #ls ${SNAPCRAFT_PART_BUILD}/Makefile.*
-#         #              sed -i -e "s:../zlib-1.2.11/:$SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/zlib-1.2.12/:g" ${SNAPCRAFT_PART_BUILD}/*plink*
-#         #              snapcraftctl build
-# #                     ln -sf ../libpsm1/libpsm_infinipath.so.1.16  $SNAPCRAFT_PART_INSTALL/
-#       #filesets:
-#         #       plink.out:
-#         #                   - toy.map
-#         #                   - toy.ped
-#         #                   - plink
-#         # stage:
-#         #   - $plink.out
-#         # prime:
-#         #   - $plink.out
-#         organize:
-#             "Icon_230417.svg" : snap/Icon_230417.svg
-#             "bin/plink" : /usr/local/bin/plink
+#         filesets: # relative to the part install dir, so it should have been moved over by build already
+#           vdbouts:
+#                         - ${SNAPCRAFT_PART_BUILD}/bin
+# #                          - ${SNAPCRAFT_PART_BUILD}/Release/lib
+# #                          - ${SNAPCRAFT_PART_BUILD}/Release/ilib
+#         stage:
+#                 - $vdbouts
+#         prime:
+#                 - $vdbouts
+    sra-tools:
+        source:  https://github.com/ncbi/sra-tools.git
+        source-type: git
+        source-tag: '3.0.5' # "313b45f"
+        after:
+          - ncbi-vdb
+        plugin: cmake
+#        cmake-parameters:
+        build-packages:
+                - libc6-dev
+                - zlib1g-dev
+                - libxml2-dev
+                - libbison-dev
+                - libfl-dev
+                - python3 # needed for checking the install and nothing else
+                - python3-dev # needed for checking the install and nothing else
+        stage-packages:
+             - flex
+             - bison
+             - libxml2
+             - libc6 #Automatically Tuned Linear Algebra Software, documentation
+        organize:
+            "Icon_230417.svg" : snap/Icon_230417.svg
+            "bin/sra-tools" : /usr/local/bin/sra-tools
