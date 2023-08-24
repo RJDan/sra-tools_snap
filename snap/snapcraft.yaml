@@ -31,7 +31,7 @@ architectures:
 apps:
 # list of functions that come with the toolkit
  abi-dump:
-        command: abi-dump
+        command: usr/local/bin/abi-dump
         plugs:
           - home
           - network
@@ -39,7 +39,7 @@ apps:
 # abi-dump.3
 # abi-dump.3.0.5
  abi-load:
-        command: abi-load
+        command: usr/local/bin/abi-load
         plugs:
           - home
           - network
@@ -47,7 +47,7 @@ apps:
 # abi-load.3
 # abi-load.3.0.5
  align-info:
-        command: align-info
+        command: usr/local/bin/align-info
         plugs:
           - home
           - network
@@ -55,14 +55,14 @@ apps:
 # align-info.3
 # align-info.3.0.5
  # ar.3:
- #        command: ar.3
+ #        command: usr/local/bin/ar.3
  #        plugs:
  #          - home
  #          - network
  #          - removable-media
 # ar.3.0.5
  bam-load:
-        command: bam-load
+        command: usr/local/bin/bam-load
         plugs:
           - home
           - network
@@ -71,7 +71,7 @@ apps:
 # bam-load.3.0.5
 # bison.yacc
  cache-mgr:
-        command: cache-mgr
+        command: usr/local/bin/cache-mgr
         plugs:
           - home
           - network
@@ -79,7 +79,7 @@ apps:
 # cache-mgr.3
 # cache-mgr.3.0.5
 #  cg-load:
-#         command: cg-load
+#         command: usr/local/bin/cg-load
 #         plugs:
 #           - home
 #           - network
@@ -87,12 +87,12 @@ apps:
 # # cg-load.3
 # # cg-load.3.0.5
 #  dbmeta:
-#         command: dbmeta
+#         command: usr/local/bin/dbmeta
 #           - home
 #           - network
 #           - removable-media
  dump-ref-fasta:
-        command: dump-ref-fasta
+        command: usr/local/bin/dump-ref-fasta
         plugs:
           - home
           - network
@@ -100,7 +100,7 @@ apps:
 # dump-ref-fasta.3
 # dump-ref-fasta.3.0.5
  fasterq-dump:
-        command: fasterq-dump
+        command: usr/local/bin/fasterq-dump
         plugs:
           - home
           - network
@@ -109,7 +109,7 @@ apps:
 # fasterq-dump.3
 # fasterq-dump.3.0.5
  fastq-dump:
-        command: fastq-dump
+        command: usr/local/bin/fastq-dump
         plugs:
           - home
           - network
@@ -118,7 +118,7 @@ apps:
 # fastq-dump.3
 # fastq-dump.3.0.5
  fastq-load:
-        command: fastq-load
+        command: usr/local/bin/fastq-load
         plugs:
           - home
           - network
@@ -126,13 +126,13 @@ apps:
 # fastq-load.3
 # fastq-load.3.0.5
  # flex:
- #        command: flex
+ #        command: usr/local/bin/flex
  #          - home
  #          - network
  #          - removable-media
 # flex++
  helicos-load:
-        command: helicos-load
+        command: usr/local/bin/helicos-load
         plugs:
           - home
           - network
@@ -140,7 +140,7 @@ apps:
 # helicos-load.3
 # helicos-load.3.0.5
  illumina-dump:
-        command: illumina-dump
+        command: usr/local/bin/illumina-dump
         plugs:
           - home
           - network
@@ -148,7 +148,7 @@ apps:
 # illumina-dump.3
 # illumina-dump.3.0.5
  illumina-load:
-        command: illumina-load
+        command: usr/local/bin/illumina-load
         plugs:
           - home
           - network
@@ -156,19 +156,19 @@ apps:
 # illumina-load.3
 # illumina-load.3.0.5
  # kar:
- #        command: kar
+ #        command: usr/local/bin/kar
  #          - home
  #          - network
  #          - removable-media
  # kdbmeta.3:
- #        command: kdbmeta.3
+ #        command: usr/local/bin/kdbmeta.3
  #        plugs:
  #          - home
  #          - network
  #          - removable-media
 # kdbmeta.3.0.5
  latf-load:
-        command: latf-load
+        command: usr/local/bin/latf-load
         plugs:
           - home
           - network
@@ -176,22 +176,22 @@ apps:
 # latf-load.3
 # latf-load.3.0.5
  # lex:
- #        command: lex
+ #        command: usr/local/bin/lex
  #          - home
  #          - network
  #          - removable-media
  # m4:
- #        command: m4
+ #        command: usr/local/bin/m4
  #          - home
  #          - network
  #          - removable-media
  # ncbi:
- #        command: ncbi
+ #        command: usr/local/bin/ncbi
  #          - home
  #          - network
  #          - removable-media
  pacbio-load:
-        command: pacbio-load
+        command: usr/local/bin/pacbio-load
         plugs:
           - home
           - network
@@ -199,7 +199,7 @@ apps:
 # pacbio-load.3
 # pacbio-load.3.0.5
  prefetch:
-        command: prefetch
+        command: usr/local/bin/prefetch
           - home
           - network
           - removable-media
@@ -207,14 +207,14 @@ apps:
 # prefetch.3
 # prefetch.3.0.5
  rcexplain:
-        command: rcexplain
+        command: usr/local/bin/rcexplain
           - home
           - network
           - removable-media
 # rcexplain.3
 # rcexplain.3.0.5
  sam-dump:
-        command: sam-dump
+        command: usr/local/bin/sam-dump
         plugs:
           - home
           - network
@@ -223,7 +223,7 @@ apps:
 # sam-dump.3
 # sam-dump.3.0.5
  sff-dump:
-        command: sff-dump
+        command: usr/local/bin/sff-dump
         plugs:
           - home
           - network
@@ -231,7 +231,7 @@ apps:
 # sff-dump.3
 # sff-dump.3.0.5
  sff-load:
-        command: sff-load
+        command: usr/local/bin/sff-load
         plugs:
           - home
           - network
@@ -239,7 +239,7 @@ apps:
 # sff-load.3
 # sff-load.3.0.5
  sra-pileup:
-        command: sra-pileup
+        command: usr/local/bin/sra-pileup
         plugs:
           - home
           - network
@@ -248,7 +248,7 @@ apps:
 # sra-pileup.3
 # sra-pileup.3.0.5
  sra-search:
-        command: sra-search
+        command: usr/local/bin/sra-search
         plugs:
           - home
           - network
@@ -256,13 +256,13 @@ apps:
 # sra-search.3
 # sra-search.3.0.5
  sra-sort:
-        command: sra-sort
+        command: usr/local/bin/sra-sort
         plugs:
           - home
           - network
           - removable-media
  # sra-sort-cg:
- #        command: sra-sort-cg
+ #        command: usr/local/bin/sra-sort-cg
  #        plugs:
  #          - home
  #          - network
@@ -272,7 +272,7 @@ apps:
 # sra-sort.3
 # sra-sort.3.0.5
  sra-stat:
-        command: sra-stat
+        command: usr/local/bin/sra-stat
         plugs:
           - home
           - network
@@ -280,7 +280,7 @@ apps:
 # sra-stat.3
 # sra-stat.3.0.5
  srapath:
-        command: srapath
+        command: usr/local/bin/srapath
           - home
           - network
           - removable-media
@@ -289,7 +289,7 @@ apps:
 # srapath.3.0.5
 # sratools.3.0.5
  srf-load:
-        command: srf-load
+        command: usr/local/bin/srf-load
         plugs:
           - home
           - network
@@ -297,7 +297,7 @@ apps:
 # srf-load.3
 # srf-load.3.0.5
  test-sra:
-        command: test-sra
+        command: usr/local/bin/test-sra
         plugs:
           - home
           - network
@@ -308,7 +308,7 @@ apps:
 # vdb-config.3
 # vdb-config.3.0.5
  vdb-copy:
-        command: vdb-copy
+        command: usr/local/bin/vdb-copy
         plugs:
           - home
           - network
@@ -316,7 +316,7 @@ apps:
 # vdb-copy.3
 # vdb-copy.3.0.5
  vdb-decrypt:
-        command: vdb-decrypt
+        command: usr/local/bin/vdb-decrypt
         plugs:
           - home
           - network
@@ -324,7 +324,7 @@ apps:
 # vdb-decrypt.3
 # vdb-decrypt.3.0.5
  vdb-dump:
-        command: vdb-dump
+        command: usr/local/bin/vdb-dump
         plugs:
           - home
           - network
@@ -333,7 +333,7 @@ apps:
 # vdb-dump.3
 # vdb-dump.3.0.5
  vdb-encrypt:
-        command: vdb-encrypt
+        command: usr/local/bin/vdb-encrypt
         plugs:
           - home
           - network
@@ -341,7 +341,7 @@ apps:
 # vdb-encrypt.3
 # vdb-encrypt.3.0.5
  vdb-lock:
-        command: vdb-lock
+        command: usr/local/bin/vdb-lock
         plugs:
           - home
           - network
@@ -349,7 +349,7 @@ apps:
 # vdb-lock.3
 # vdb-lock.3.0.5
  vdb-unlock:
-        command: vdb-unlock
+        command: usr/local/bin/vdb-unlock
         plugs:
           - home
           - network
@@ -357,7 +357,7 @@ apps:
 # vdb-unlock.3
 # vdb-unlock.3.0.5
  vdb-validate:
-        command: vdb-validate
+        command: usr/local/bin/vdb-validate
         plugs:
           - home
           - network
