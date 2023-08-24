@@ -1,6 +1,6 @@
 name: rjd-sra-tools
 title: rjd-sra-tools
-version: '313b45f' # just for humans, typically '1.2+git' or '1.3.2'
+version: '3.0.5' # just for humans, typically '1.2+git' or '1.3.2'
 summary: Toolkit from NCBI for using Sequence Read Archives data.
 description: |
           " The SRA Toolkit and SDK from NCBI is a collection of tools and libraries for using data in the INSDC Sequence Read Archives.."
@@ -10,11 +10,12 @@ description: |
           * Report snap-specific bugs to me.
             * I _DO_ use this snap. It _has been superficially tested_ on my system. I __do not__ track the latest version.
             * __The snap has not been fully tested__
-            * Packaging 'style' : git build for linux machines.
+            * Packaging 'style' : tarball build for linux machines.
             * License refers to the original software, not the snapcraft 'code'.
             * More info:
             * Run the following to rename the snap
-            ```sudo snap alias rjd-sra-tools.sra-tools sra-tools```
+            ```sudo snap alias rjd-sra-tools.<function> <function>```
+            At the moment only a few commands are exposed.
 
 website: https://github.com/RJDan/rjd-sra-tools_snap
 source-code : https://github.com/RJDan/rjd-sra-tools_snap
@@ -22,50 +23,351 @@ icon: Icon_230417.svg
 
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict # use 'strict' once you have the right plugs and slots
-license: GPL-3.0-only
+#license: GPL-3.0-only
 base: core22 # the base snap is the execution environment for this snap
+architectures:
+    - amd64
 
 apps:
-    sra-tools:
-        command: /usr/local/bin/sra-tools
+# list of functions that come with the toolkit
+ abi-dump:
+        command: /usr/local/bin/abi-dump
         plugs:
           - home
           - network
           - removable-media
+# abi-dump.3
+# abi-dump.3.0.5
+ abi-load:
+        command: /usr/local/bin/abi-load
+        plugs:
+          - home
+          - network
+          - removable-media
+# abi-load.3
+# abi-load.3.0.5
+ align-info:
+        command: /usr/local/bin/align-info
+        plugs:
+          - home
+          - network
+          - removable-media
+# align-info.3
+# align-info.3.0.5
+ # ar.3:
+ #        command: /usr/local/bin/ar.3
+ #        plugs:
+ #          - home
+ #          - network
+ #          - removable-media
+# ar.3.0.5
+ bam-load:
+        command: /usr/local/bin/bam-load
+        plugs:
+          - home
+          - network
+          - removable-media
+# bam-load.3
+# bam-load.3.0.5
+# bison.yacc
+ cache-mgr:
+        command: /usr/local/bin/cache-mgr
+        plugs:
+          - home
+          - network
+          - removable-media
+# cache-mgr.3
+# cache-mgr.3.0.5
+#  cg-load:
+#         command: /usr/local/bin/cg-load
+#         plugs:
+#           - home
+#           - network
+#           - removable-media
+# # cg-load.3
+# # cg-load.3.0.5
+#  dbmeta:
+#         command: /usr/local/bin/dbmeta
+#           - home
+#           - network
+#           - removable-media
+ dump-ref-fasta:
+        command: /usr/local/bin/dump-ref-fasta
+        plugs:
+          - home
+          - network
+          - removable-media
+# dump-ref-fasta.3
+# dump-ref-fasta.3.0.5
+ fasterq-dump:
+        command: /usr/local/bin/fasterq-dump
+        plugs:
+          - home
+          - network
+          - removable-media
+# fasterq-dump-orig.3.0.5
+# fasterq-dump.3
+# fasterq-dump.3.0.5
+ fastq-dump:
+        command: /usr/local/bin/fastq-dump
+        plugs:
+          - home
+          - network
+          - removable-media
+# fastq-dump-orig.3.0.5
+# fastq-dump.3
+# fastq-dump.3.0.5
+ fastq-load:
+        command: /usr/local/bin/fastq-load
+        plugs:
+          - home
+          - network
+          - removable-media
+# fastq-load.3
+# fastq-load.3.0.5
+ # flex:
+ #        command: /usr/local/bin/flex
+ #          - home
+ #          - network
+ #          - removable-media
+# flex++
+ helicos-load:
+        command: /usr/local/bin/helicos-load
+        plugs:
+          - home
+          - network
+          - removable-media
+# helicos-load.3
+# helicos-load.3.0.5
+ illumina-dump:
+        command: /usr/local/bin/illumina-dump
+        plugs:
+          - home
+          - network
+          - removable-media
+# illumina-dump.3
+# illumina-dump.3.0.5
+ illumina-load:
+        command: /usr/local/bin/illumina-load
+        plugs:
+          - home
+          - network
+          - removable-media
+# illumina-load.3
+# illumina-load.3.0.5
+ # kar:
+ #        command: /usr/local/bin/kar
+ #          - home
+ #          - network
+ #          - removable-media
+ # kdbmeta.3:
+ #        command: /usr/local/bin/kdbmeta.3
+ #        plugs:
+ #          - home
+ #          - network
+ #          - removable-media
+# kdbmeta.3.0.5
+ latf-load:
+        command: /usr/local/bin/latf-load
+        plugs:
+          - home
+          - network
+          - removable-media
+# latf-load.3
+# latf-load.3.0.5
+ # lex:
+ #        command: /usr/local/bin/lex
+ #          - home
+ #          - network
+ #          - removable-media
+ # m4:
+ #        command: /usr/local/bin/m4
+ #          - home
+ #          - network
+ #          - removable-media
+ # ncbi:
+ #        command: /usr/local/bin/ncbi
+ #          - home
+ #          - network
+ #          - removable-media
+ pacbio-load:
+        command: /usr/local/bin/pacbio-load
+        plugs:
+          - home
+          - network
+          - removable-media
+# pacbio-load.3
+# pacbio-load.3.0.5
+ prefetch:
+        command: /usr/local/bin/prefetch
+          - home
+          - network
+          - removable-media
+# prefetch-orig.3.0.5
+# prefetch.3
+# prefetch.3.0.5
+ rcexplain:
+        command: /usr/local/bin/rcexplain
+          - home
+          - network
+          - removable-media
+# rcexplain.3
+# rcexplain.3.0.5
+ sam-dump:
+        command: /usr/local/bin/sam-dump
+        plugs:
+          - home
+          - network
+          - removable-media
+# sam-dump-orig.3.0.5
+# sam-dump.3
+# sam-dump.3.0.5
+ sff-dump:
+        command: /usr/local/bin/sff-dump
+        plugs:
+          - home
+          - network
+          - removable-media
+# sff-dump.3
+# sff-dump.3.0.5
+ sff-load:
+        command: /usr/local/bin/sff-load
+        plugs:
+          - home
+          - network
+          - removable-media
+# sff-load.3
+# sff-load.3.0.5
+ sra-pileup:
+        command: /usr/local/bin/sra-pileup
+        plugs:
+          - home
+          - network
+          - removable-media
+# sra-pileup-orig.3.0.5
+# sra-pileup.3
+# sra-pileup.3.0.5
+ sra-search:
+        command: /usr/local/bin/sra-search
+        plugs:
+          - home
+          - network
+          - removable-media
+# sra-search.3
+# sra-search.3.0.5
+ sra-sort:
+        command: /usr/local/bin/sra-sort
+        plugs:
+          - home
+          - network
+          - removable-media
+ # sra-sort-cg:
+ #        command: /usr/local/bin/sra-sort-cg
+ #        plugs:
+ #          - home
+ #          - network
+ #          - removable-media
+# sra-sort-cg.3
+# sra-sort-cg.3.0.5
+# sra-sort.3
+# sra-sort.3.0.5
+ sra-stat:
+        command: /usr/local/bin/sra-stat
+        plugs:
+          - home
+          - network
+          - removable-media
+# sra-stat.3
+# sra-stat.3.0.5
+ srapath:
+        command: /usr/local/bin/srapath
+          - home
+          - network
+          - removable-media
+# srapath-orig.3.0.5
+# srapath.3
+# srapath.3.0.5
+# sratools.3.0.5
+ srf-load:
+        command: /usr/local/bin/srf-load
+        plugs:
+          - home
+          - network
+          - removable-media
+# srf-load.3
+# srf-load.3.0.5
+ test-sra:
+        command: /usr/local/bin/test-sra
+        plugs:
+          - home
+          - network
+          - removable-media
+# test-sra.3
+# test-sra.3.0.5
+# vdb-config
+# vdb-config.3
+# vdb-config.3.0.5
+ vdb-copy:
+        command: /usr/local/bin/vdb-copy
+        plugs:
+          - home
+          - network
+          - removable-media
+# vdb-copy.3
+# vdb-copy.3.0.5
+ vdb-decrypt:
+        command: /usr/local/bin/vdb-decrypt
+        plugs:
+          - home
+          - network
+          - removable-media
+# vdb-decrypt.3
+# vdb-decrypt.3.0.5
+ vdb-dump:
+        command: /usr/local/bin/vdb-dump
+        plugs:
+          - home
+          - network
+          - removable-media
+# vdb-dump-orig.3.0.5
+# vdb-dump.3
+# vdb-dump.3.0.5
+ vdb-encrypt:
+        command: /usr/local/bin/vdb-encrypt
+        plugs:
+          - home
+          - network
+          - removable-media
+# vdb-encrypt.3
+# vdb-encrypt.3.0.5
+ vdb-lock:
+        command: /usr/local/bin/vdb-lock
+        plugs:
+          - home
+          - network
+          - removable-media
+# vdb-lock.3
+# vdb-lock.3.0.5
+ vdb-unlock:
+        command: /usr/local/bin/vdb-unlock
+        plugs:
+          - home
+          - network
+          - removable-media
+# vdb-unlock.3
+# vdb-unlock.3.0.5
+ vdb-validate:
+        command: /usr/local/bin/vdb-validate
+        plugs:
+          - home
+          - network
+          - removable-media
+# vdb-validate.3
+# vdb-validate.3.0.5
         environment:
-            # XDG config
-            # XDG_CACHE_HOME:  $SNAP_USER_COMMON/.cache
-            # XDG_CONFIG_HOME: $SNAP_USER_DATA/.config
-#            LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/lapack:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/blas
             JAVA_HOME: $SNAP/usr/lib/jvm/java-17-openjdk-${SNAPCRAFT_TARGET_ARCH}
             JAVA_TOOL_OPTIONS: "-Duser.home=$SNAP_USER_COMMON"
-            PATH: $JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
-#            VDB_BINDIR: ${STAGE}/ # where the output should be available during the build
-            VDB_BINDIR: ${SNAP}/usr/local/include/ # where I found the binaries
-#            VDB_INCDIR: ${SNAP}/parts/sra-tools/src/../ncbi-vdb/interfaces
-            VDB_INCDIR: ${SNAP}/usr/local/include/
-            VDB_LIBDIR: ${STAGE}/usr/local/include/  #this looks like the place where vdb libs were placed
-#            NCBI_VDB_LIBDIR:   # must point to installed libraries
-#Please specify the location of an ncbi-vdb build in Cmake variable VDB_BINDIR. It is expected to contain one or both subdirectories Debug/ and Release/, with bin/, lib/ and ilib/ underneath each.
-
-CMakeLists.txt:set( VDB_BINDIR "${CMAKE_BINARY_DIR}/../ncbi-vdb" CACHE PATH "Location of NCBI VDB build directory" )
-CMakeLists.txt:set( VDB_INCDIR "${CMAKE_SOURCE_DIR}/../ncbi-vdb/interfaces" CACHE PATH "Location of NCBI VDB include directory" )
-
-build/env.cmake:    set( NCBI_VDB_BINDIR_DEBUG ${VDB_BINDIR}/Debug/bin )
-build/env.cmake:    set( NCBI_VDB_BINDIR_RELEASE ${VDB_BINDIR}/Release/bin )
-build/env.cmake:    set( NCBI_VDB_LIBDIR_DEBUG ${VDB_BINDIR}/Debug/lib )
-build/env.cmake:    set( NCBI_VDB_LIBDIR_RELEASE ${VDB_BINDIR}/Release/lib )
-build/env.cmake:    set( NCBI_VDB_ILIBDIR_DEBUG ${VDB_BINDIR}/Debug/ilib )
-build/env.cmake:    set( NCBI_VDB_ILIBDIR_RELEASE ${VDB_BINDIR}/Release/ilib )
-
-tools2/shared/cmake/Findncbi-vdb.cmake:find_library (NCBI_VDB_LIB "ncbi-vdb" ENV NCBI_VDB_LIBDIR)
-tools2/shared/cmake/Findncbi-vdb.cmake:if (NCBI_VDB_LIB MATCHES NCBI_VDB_LIB-NOTFOUND)
-tools2/shared/cmake/Findncbi-vdb.cmake:    find_library (NCBI_VDB_LIB "ncbi-vdb" PATHS "/usr/local/ncbi" "$ENV{HOME}/usr/local/ncbi" "$ENV{HOME}/ncbi" NO_DEFAULT_PATH)
-tools2/shared/cmake/Findncbi-vdb.cmake:if (NCBI_VDB_LIB MATCHES NCBI_VDB_LIB-NOTFOUND)
-tools2/shared/cmake/Findncbi-vdb.cmake:    set (NCBI_VDB_LIB_DIR_ROOT "$ENV{HOME}/ncbi-outdir/ncbi-vdb/${NCBI_VDB_SYSTEM_NAME}/${NCBI_VDB_COMPILER_NAME}/x86_64/")
-tools2/shared/cmake/Findncbi-vdb.cmake:        set (NCBI_VDB_LIB_DIRS "${NCBI_VDB_LIB_DIR_ROOT}/dbg/lib" "${NCBI_VDB_LIB_DIR_ROOT}/rel/lib")
-tools2/shared/cmake/Findncbi-vdb.cmake:        set (NCBI_VDB_LIB_DIRS "${NCBI_VDB_LIB_DIR_ROOT}/rel/lib" "${NCBI_VDB_LIB_DIR_ROOT}/dbg/lib")
-
+#            PATH: $JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
 
 # The `layout` ensures that files can be found by applications where they are expected by the toolkit or application.
 #    layout:
@@ -85,52 +387,42 @@ tools2/shared/cmake/Findncbi-vdb.cmake:        set (NCBI_VDB_LIB_DIRS "${NCBI_VD
 
 
 parts:
-    ncbi-vdb:
-        source:  https://github.com/ncbi/ncbi-vdb.git
-        source-type: git
-        source-tag: '3.0.5' # "44cdea5" #
-#        source-tag: "c4aa196" # 3.0.2
-        plugin: cmake
-#         cmake-parameters:
-# #              - -all # specify nothing to build the default toolkit user-facing parts
-#               - -all # to build all the components
-        build-packages:
-                - libc6-dev
-                - zlib1g-dev
-                - less
-                - tree
-        stage-packages:
-             - libc6 #Automatically Tuned Linear Algebra Software, documentation
-#         filesets: # relative to the part install dir, so it should have been moved over by build already
-#           vdbouts:
-#                         - ${SNAPCRAFT_PART_BUILD}/bin
-# #                          - ${SNAPCRAFT_PART_BUILD}/Release/lib
-# #                          - ${SNAPCRAFT_PART_BUILD}/Release/ilib
-#         stage:
-#                 - $vdbouts
-#         prime:
-#                 - $vdbouts
     sra-tools:
-        source:  https://github.com/ncbi/sra-tools.git
-        source-type: git
-        source-tag: '3.0.5' # "313b45f"
-        after:
-          - ncbi-vdb
-        plugin: cmake
-#        cmake-parameters:
-        build-packages:
-                - libc6-dev
-                - zlib1g-dev
-                - libxml2-dev
-                - libbison-dev
-                - libfl-dev
-                - python3 # needed for checking the install and nothing else
-                - python3-dev # needed for checking the install and nothing else
-        stage-packages:
-             - flex
-             - bison
-             - libxml2
-             - libc6 #Automatically Tuned Linear Algebra Software, documentation
-        organize:
+      source:  https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/3.0.5/sratoolkit.3.0.5-ubuntu64.tar.gz
+      plugin: dump
+      build-packages:
+       - less
+       - tree
+       - libc6-dev
+       - zlib1g-dev
+       - libxml2-dev
+       - libbison-dev
+       - libfl-dev
+       - libssl-dev
+       - python3 # needed for checking the install and nothing else
+       - python3-dev # needed for checking the install and nothing else
+      stage-packages:
+       - flex
+       - openssl
+       - libcrypt1
+       - bison
+       - libxml2
+       - libc6 #Automatically Tuned Linear Algebra Software, documentation
+      # filesets:
+      #      binary:
+      #      - /usr/local/bin/sra-tools
+      organize:
             "Icon_230417.svg" : snap/Icon_230417.svg
-            "bin/sra-tools" : /usr/local/bin/sra-tools
+            "bin" : /usr/local/bin
+      override-build: |
+                # moving binaries from build to install
+                cp -r ${SNAPCRAFT_PART_BUILD}/bin ${SNAPCRAFT_PART_INSTALL}/bin
+      # override-stage: |
+      #           cp -r ${SNAPCRAFT_PART_INSTALL}/usr ${STAGE}/
+      stage: # stage runs after organise
+      - usr/local/bin
+#            - $binary
+      prime:
+      - usr/local/bin
+#         - $binary
+

@@ -7,7 +7,7 @@
    version="1.1"
    id="svg239"
    sodipodi:docname="Icon_230417.svg"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -22,11 +22,11 @@
      inkscape:pagecheckerboard="1"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:zoom="5.0121836"
-     inkscape:cx="33.318811"
-     inkscape:cy="71.625469"
-     inkscape:window-width="1920"
-     inkscape:window-height="1033"
+     inkscape:zoom="3.544149"
+     inkscape:cx="93.252287"
+     inkscape:cy="32.871078"
+     inkscape:window-width="943"
+     inkscape:window-height="1028"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -40,7 +40,8 @@
      inkscape:showpageshadow="false"
      guidetolerance="10.1"
      objecttolerance="10.1"
-     gridtolerance="10">
+     gridtolerance="10"
+     inkscape:deskcolor="#505050">
     <sodipodi:guide
        position="226.77165,385.22833"
        orientation="-1,0"
@@ -267,9 +268,9 @@
          style="font-size:8px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect79778-9-3);display:inline;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><tspan
            x="400.03906"
            y="1067.8955"
-           id="tspan2703"><tspan
+           id="tspan821"><tspan
              style="fill:#000000;stroke:none"
-             id="tspan2701">Settings taken from the AJHG.</tspan></tspan></text>
+             id="tspan819">Settings taken from the AJHG.</tspan></tspan></text>
       <text
          xml:space="preserve"
          transform="matrix(0.75,0,0,0.75,358.87213,53.792031)"
@@ -277,39 +278,39 @@
          style="font-size:8px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect79778-9);display:inline;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><tspan
            x="400.03906"
            y="1067.8955"
-           id="tspan2707"><tspan
+           id="tspan825"><tspan
              style="fill:#000000;stroke:none"
-             id="tspan2705">The export settings:
+             id="tspan823">The export settings:
 </tspan></tspan><tspan
            x="400.03906"
            y="1077.8955"
-           id="tspan2711"><tspan
+           id="tspan829"><tspan
              style="fill:#000000;stroke:none"
-             id="tspan2709">Grey scale : 500 dpi
+             id="tspan827">Grey scale : 500 dpi
 </tspan></tspan><tspan
            x="400.03906"
            y="1087.8955"
-           id="tspan2715"><tspan
+           id="tspan833"><tspan
              style="fill:#000000;stroke:none"
-             id="tspan2713">Colour : 300 dpi
+             id="tspan831">Colour : 300 dpi
 </tspan></tspan><tspan
            x="400.03906"
            y="1097.8955"
-           id="tspan2719"><tspan
+           id="tspan837"><tspan
              style="fill:#000000;stroke:none"
-             id="tspan2717">line art : 1000 dpi
+             id="tspan835">line art : 1000 dpi
 </tspan></tspan><tspan
            x="400.03906"
            y="1107.8955"
-           id="tspan2723"><tspan
+           id="tspan841"><tspan
              style="fill:#000000;stroke:none"
-             id="tspan2721">
+             id="tspan839">
 </tspan></tspan><tspan
            x="400.03906"
            y="1117.8955"
-           id="tspan2727"><tspan
+           id="tspan845"><tspan
              style="fill:#000000;stroke:none"
-             id="tspan2725">TIFF, PDF, EPS</tspan></tspan></text>
+             id="tspan843">TIFF, PDF, EPS</tspan></tspan></text>
       <text
          xml:space="preserve"
          transform="matrix(0.75,0,0,0.75,436.23774,-64.162769)"
@@ -317,9 +318,9 @@
          style="font-size:8px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect67241-8);display:inline;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><tspan
            x="400.03906"
            y="1067.8955"
-           id="tspan2731"><tspan
+           id="tspan849"><tspan
              style="fill:#000000;stroke:none"
-             id="tspan2729">line width should be 0.5 - 1.5 pt. </tspan></tspan></text>
+             id="tspan847">line width should be 0.5 - 1.5 pt. </tspan></tspan></text>
       <text
          xml:space="preserve"
          transform="matrix(0.75,0,0,0.75,372.39454,-105.09157)"
@@ -327,9 +328,9 @@
          style="font-size:10.6667px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect9508);fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><tspan
            x="400.03906"
            y="1070.2975"
-           id="tspan2735"><tspan
+           id="tspan853"><tspan
              style="fill:#000000;stroke:none"
-             id="tspan2733">The default text should be Arial and size 6-8pt.</tspan></tspan></text>
+             id="tspan851">The default text should be Arial and size 6-8pt.</tspan></tspan></text>
       <text
          xml:space="preserve"
          transform="matrix(0.75,0,0,0.75,372.39454,-96.296365)"
@@ -337,9 +338,9 @@
          style="font-size:8px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect35804);fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><tspan
            x="400.03906"
            y="1067.8955"
-           id="tspan2739"><tspan
+           id="tspan857"><tspan
              style="fill:#000000;stroke:none"
-             id="tspan2737">The default text should be Arial and size 6-8pt.</tspan></tspan></text>
+             id="tspan855">The default text should be Arial and size 6-8pt.</tspan></tspan></text>
       <text
          xml:space="preserve"
          transform="matrix(0.75,0,0,0.75,372.39454,-86.39791)"
@@ -347,9 +348,9 @@
          style="font-size:10.6667px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect45946);fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><tspan
            x="400.03906"
            y="1070.2975"
-           id="tspan2743"><tspan
+           id="tspan861"><tspan
              style="font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';fill:#000000;stroke:none"
-             id="tspan2741">The alternative could be Liberation font and size 6-8pt.</tspan></tspan></text>
+             id="tspan859">The alternative could be Liberation font and size 6-8pt.</tspan></tspan></text>
       <path
          style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
          d="m 669.18801,733.58063 61.00117,0.17242"
@@ -365,33 +366,33 @@
          style="font-size:8px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect125773);display:inline;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><tspan
            x="400.03906"
            y="1067.8955"
-           id="tspan2747"><tspan
+           id="tspan865"><tspan
              style="fill:#000000;stroke:none"
-             id="tspan2745">Subplot labels in capital letters.
+             id="tspan863">Subplot labels in capital letters.
 </tspan></tspan><tspan
            x="400.03906"
            y="1077.8955"
-           id="tspan2751"><tspan
+           id="tspan869"><tspan
              style="fill:#000000;stroke:none"
-             id="tspan2749">
+             id="tspan867">
 </tspan></tspan><tspan
            x="400.03906"
            y="1087.8955"
-           id="tspan2755"><tspan
+           id="tspan873"><tspan
              style="fill:#000000;stroke:none"
-             id="tspan2753">Limit vertical spaces.
+             id="tspan871">Limit vertical spaces.
 </tspan></tspan><tspan
            x="400.03906"
            y="1097.8955"
-           id="tspan2759"><tspan
+           id="tspan877"><tspan
              style="fill:#000000;stroke:none"
-             id="tspan2757">
+             id="tspan875">
 </tspan></tspan><tspan
            x="400.03906"
            y="1107.8955"
-           id="tspan2763"><tspan
+           id="tspan881"><tspan
              style="fill:#000000;stroke:none"
-             id="tspan2761">Do not use red and green together.
+             id="tspan879">Do not use red and green together.
 </tspan></tspan></text>
     </g>
     <text
@@ -457,14 +458,14 @@
      id="defs129" />
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:pre;shape-padding:0;shape-margin:0;inline-size:0;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.53960992;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:pre;shape-padding:0;shape-margin:0;inline-size:0;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.53961;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
      x="8.4957047"
      y="24.343025"
      id="text2506"
-     transform="matrix(2.4091477,0,0,2.4091477,-19.606944,6.3707657)"><tspan
+     transform="matrix(2.4091477,0,0,2.4091477,-15.969787,6.3707657)"><tspan
        sodipodi:role="line"
        id="tspan2504"
        x="8.4957047"
        y="24.343025"
-       style="fill:#ffffff;fill-opacity:1;stroke-width:0.53960992;stroke:#000000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">PLINK 1.9 </tspan></text>
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.53961;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">SRA tools</tspan></text>
 </svg>
