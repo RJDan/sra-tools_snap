@@ -1,5 +1,5 @@
 name: rjd-sra-tools
-title: rjd-sra-tools
+title: SRA Tools
 version: '3.0.5' # just for humans, typically '1.2+git' or '1.3.2'
 summary: Toolkit from NCBI for using Sequence Read Archives data.
 description: |
@@ -8,18 +8,20 @@ description: |
           * I have packaged the software as a snap for **personal use** but I have made the snap available for free.
           * I do not maintain the software itself. I only maintain the snap packaging. Please report software bugs to the maintainers.
           * Report snap-specific bugs to me.
-            * I _DO_ use this snap. It _has been superficially tested_ on my system. I __do not__ track the latest version.
+            * I _DO_ use this snap. It _HAS BEEN SUPERFICIALLY_ tested on my system. I __do not__ track the latest version.
             * __The snap has not been fully tested__
             * Packaging 'style' : tarball build for linux machines.
             * License refers to the original software, not the snapcraft 'code'.
             * More info:
-            * Run the following to rename the snap
-            ```sudo snap alias rjd-sra-tools.<function> <function>```
-            At the moment only a few commands are exposed.
+            * Run the following to rename the snap commands to whatever you want.
+                ```sudo snap alias rjd-sra-tools.<function> <function>```
+#            * Install the snap with the flag '--prefer' to use the default aliases.
+#            ```sudo snap install rjd-sra-tools --prefer```
 
 website: https://github.com/RJDan/rjd-sra-tools_snap
 source-code : https://github.com/RJDan/rjd-sra-tools_snap
-icon: Icon_230417.svg
+contact : https://github.com/RJDan/rjd-sra-tools_snap
+icon: Icon.svg
 
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict # use 'strict' once you have the right plugs and slots
@@ -32,6 +34,7 @@ apps:
 # list of functions that come with the toolkit
  abi-dump:
         command: usr/local/bin/abi-dump
+        aliases: [ abi-dump ]
         plugs:
           - home
           - network
@@ -40,6 +43,7 @@ apps:
 # abi-dump.3.0.5
  abi-load:
         command: usr/local/bin/abi-load
+        aliases: [ abi-load ]
         plugs:
           - home
           - network
@@ -48,6 +52,7 @@ apps:
 # abi-load.3.0.5
  align-info:
         command: usr/local/bin/align-info
+        aliases: [ align-info ]
         plugs:
           - home
           - network
@@ -56,6 +61,7 @@ apps:
 # align-info.3.0.5
  # ar.3:
  #        command: usr/local/bin/ar.3
+#  aliases: [ ar.3 ]
  #        plugs:
  #          - home
  #          - network
@@ -63,6 +69,7 @@ apps:
 # ar.3.0.5
  bam-load:
         command: usr/local/bin/bam-load
+        aliases: [ bam-load ]
         plugs:
           - home
           - network
@@ -72,6 +79,7 @@ apps:
 # bison.yacc
  cache-mgr:
         command: usr/local/bin/cache-mgr
+        aliases: [ cache-mgr ]
         plugs:
           - home
           - network
@@ -80,6 +88,7 @@ apps:
 # cache-mgr.3.0.5
  cg-load:
         command: usr/local/bin/cg-load
+        aliases: [ cg-load ]
         plugs:
           - home
           - network
@@ -88,11 +97,13 @@ apps:
 # # cg-load.3.0.5
  # dbmeta: # error, does not exist
  #        command: usr/local/bin/dbmeta
+#  aliases: [  dbmeta ] # error, does not exis ]
  #          - home
  #          - network
  #          - removable-media
  dump-ref-fasta:
         command: usr/local/bin/dump-ref-fasta
+        aliases: [ dump-ref-fasta ]
         plugs:
           - home
           - network
@@ -101,6 +112,7 @@ apps:
 # dump-ref-fasta.3.0.5
  fasterq-dump:
         command: usr/local/bin/fasterq-dump
+        aliases: [ fasterq-dump ]
         plugs:
           - home
           - network
@@ -110,6 +122,7 @@ apps:
 # fasterq-dump.3.0.5
  fastq-dump:
         command: usr/local/bin/fastq-dump
+        aliases: [ fastq-dump ]
         plugs:
           - home
           - network
@@ -119,6 +132,7 @@ apps:
 # fastq-dump.3.0.5
  fastq-load:
         command: usr/local/bin/fastq-load
+        aliases: [ fastq-load ]
         plugs:
           - home
           - network
@@ -127,12 +141,14 @@ apps:
 # fastq-load.3.0.5
  # flex: # error, does not exist
  #        command: usr/local/bin/flex
+#  aliases: [ flex] # error, does not exis ]
  #          - home
  #          - network
  #          - removable-media
 # flex++
  helicos-load:
         command: usr/local/bin/helicos-load
+        aliases: [ helicos-load ]
         plugs:
           - home
           - network
@@ -141,6 +157,7 @@ apps:
 # helicos-load.3.0.5
  illumina-dump:
         command: usr/local/bin/illumina-dump
+        aliases: [ illumina-dump ]
         plugs:
           - home
           - network
@@ -149,6 +166,7 @@ apps:
 # illumina-dump.3.0.5
  illumina-load:
         command: usr/local/bin/illumina-load
+        aliases: [ illumina-load ]
         plugs:
           - home
           - network
@@ -157,11 +175,13 @@ apps:
 # illumina-load.3.0.5
  kar:
         command: usr/local/bin/kar
+        aliases: [ kar ]
           - home
           - network
           - removable-media
  # kdbmeta.3: # error with app name, can't have '.'
  #        command: usr/local/bin/kdbmeta.3
+#  aliases: [  kdbmeta.3 ]: # error with app name, can't have '. ]
  #        plugs:
  #          - home
  #          - network
@@ -169,6 +189,7 @@ apps:
 # kdbmeta.3.0.5
  latf-load:
         command: usr/local/bin/latf-load
+        aliases: [ latf-load ]
         plugs:
           - home
           - network
@@ -177,21 +198,25 @@ apps:
 # latf-load.3.0.5
  # lex: # error, does not exist
  #        command: usr/local/bin/lex
+#  aliases: [  lex ] # error, does not exis ]
  #          - home
  #          - network
  #          - removable-media
  # m4: # error, does not exist
  #        command: usr/local/bin/m4
+  #aliases: [  m4 ] # error, does not exis ]
  #          - home
  #          - network
  #          - removable-media
  ncbi:
         command: usr/local/bin/ncbi
+        aliases: [ ncbi ]
           - home
           - network
           - removable-media
  pacbio-load:
         command: usr/local/bin/pacbio-load
+        aliases: [ pacbio-load ]
         plugs:
           - home
           - network
@@ -200,6 +225,7 @@ apps:
 # pacbio-load.3.0.5
  prefetch:
         command: usr/local/bin/prefetch
+        aliases: [ prefetch ]
           - home
           - network
           - removable-media
@@ -208,6 +234,7 @@ apps:
 # prefetch.3.0.5
  rcexplain:
         command: usr/local/bin/rcexplain
+        aliases: [ rcexplain ]
           - home
           - network
           - removable-media
@@ -215,6 +242,7 @@ apps:
 # rcexplain.3.0.5
  sam-dump:
         command: usr/local/bin/sam-dump
+        aliases: [ sam-dump ]
         plugs:
           - home
           - network
@@ -224,6 +252,7 @@ apps:
 # sam-dump.3.0.5
  sff-dump:
         command: usr/local/bin/sff-dump
+        aliases: [ sff-dump ]
         plugs:
           - home
           - network
@@ -232,6 +261,7 @@ apps:
 # sff-dump.3.0.5
  sff-load:
         command: usr/local/bin/sff-load
+        aliases: [ sff-load ]
         plugs:
           - home
           - network
@@ -240,6 +270,7 @@ apps:
 # sff-load.3.0.5
  sra-pileup:
         command: usr/local/bin/sra-pileup
+        aliases: [ sra-pileup ]
         plugs:
           - home
           - network
@@ -249,6 +280,7 @@ apps:
 # sra-pileup.3.0.5
  sra-search:
         command: usr/local/bin/sra-search
+        aliases: [ sra-search ]
         plugs:
           - home
           - network
@@ -257,12 +289,14 @@ apps:
 # sra-search.3.0.5
  sra-sort:
         command: usr/local/bin/sra-sort
+        aliases: [ sra-sort ]
         plugs:
           - home
           - network
           - removable-media
  sra-sort-cg:
         command: usr/local/bin/sra-sort-cg
+        aliases: [ sra-sort-cg ]
         plugs:
           - home
           - network
@@ -273,6 +307,7 @@ apps:
 # sra-sort.3.0.5
  sra-stat:
         command: usr/local/bin/sra-stat
+        aliases: [ sra-stat ]
         plugs:
           - home
           - network
@@ -281,6 +316,7 @@ apps:
 # sra-stat.3.0.5
  srapath:
         command: usr/local/bin/srapath
+        aliases: [ srapath ]
           - home
           - network
           - removable-media
@@ -290,6 +326,7 @@ apps:
 # sratools.3.0.5
  srf-load:
         command: usr/local/bin/srf-load
+        aliases: [ srf-load ]
         plugs:
           - home
           - network
@@ -298,6 +335,7 @@ apps:
 # srf-load.3.0.5
  test-sra:
         command: usr/local/bin/test-sra
+        aliases: [ test-sra ]
         plugs:
           - home
           - network
@@ -306,6 +344,7 @@ apps:
 # test-sra.3.0.5
  vdb-config:
         command: usr/local/bin/vdb-config
+        aliases: [ vdb-config ]
         plugs:
           - home
           - network
@@ -314,6 +353,7 @@ apps:
 # vdb-config.3.0.5
  vdb-copy:
         command: usr/local/bin/vdb-copy
+        aliases: [ vdb-copy ]
         plugs:
           - home
           - network
@@ -322,6 +362,7 @@ apps:
 # vdb-copy.3.0.5
  vdb-decrypt:
         command: usr/local/bin/vdb-decrypt
+        aliases: [ vdb-decrypt ]
         plugs:
           - home
           - network
@@ -330,6 +371,7 @@ apps:
 # vdb-decrypt.3.0.5
  vdb-dump:
         command: usr/local/bin/vdb-dump
+        aliases: [ vdb-dump ]
         plugs:
           - home
           - network
@@ -339,6 +381,7 @@ apps:
 # vdb-dump.3.0.5
  vdb-encrypt:
         command: usr/local/bin/vdb-encrypt
+        aliases: [ vdb-encrypt ]
         plugs:
           - home
           - network
@@ -347,6 +390,7 @@ apps:
 # vdb-encrypt.3.0.5
  vdb-lock:
         command: usr/local/bin/vdb-lock
+        aliases: [ vdb-lock ]
         plugs:
           - home
           - network
@@ -355,6 +399,7 @@ apps:
 # vdb-lock.3.0.5
  vdb-unlock:
         command: usr/local/bin/vdb-unlock
+        aliases: [ vdb-unlock ]
         plugs:
           - home
           - network
@@ -363,6 +408,7 @@ apps:
 # vdb-unlock.3.0.5
  vdb-validate:
         command: usr/local/bin/vdb-validate
+        aliases: [ vdb-validate ]
         plugs:
           - home
           - network
@@ -371,51 +417,25 @@ apps:
 # vdb-validate.3.0.5
         environment:
             HOME: ${SNAP_USER_COMMON}
+            LD_LIBRARY_PATH:    $SNAP/rjd-analysis-depend-libs:$SNAP/graphics/lib:${LD_LIBRARY_PATH}
             NCBI_HOME: ${SNAP_USER_COMMON}/.ncbi
 #                <NCBI_SETTINGS>"/home/rjd/snap/rjd-sra-tools/x1/.ncbi/user-settings.mkfg"</NCBI_SETTINGS>
             JAVA_HOME: $SNAP/usr/lib/jvm/java-17-openjdk-${SNAPCRAFT_TARGET_ARCH}
             JAVA_TOOL_OPTIONS: "-Duser.home=$SNAP_USER_COMMON"
-#            PATH: $JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
 
-# The `layout` ensures that files can be found by applications where they are expected by the toolkit or application.
-#    layout:
-    #     # # Other, generally useful paths
-    #     # /etc/fonts:
-    #     #   bind: $SNAP/etc/fonts
-    #     # /usr/share/fonts:
-    #     #   bind: $SNAP/usr/share/fonts
-    #     # /usr/share/icons:
-    #     #   bind: $SNAP/usr/share/icons
-    #     # /usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/lapack:
-    #     #   bind: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/lapack
-    #     # /usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/blas:
-    #     #   bind: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/blas
-    #     /usr/bin/python:
-    #       bind: $SNAP/usr/bin/python
-
+plugs:
+  rjd-analysis-depend:
+    interface: content
+    content: rjd-analysis-depend-0-0-1-2204 # need to check where the libs actually are
+    target: $SNAP/rjd-analysis-depend-libs
+    default-provider: rjd-analysis-depend
 
 parts:
     sra-tools:
       source:  https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/3.0.5/sratoolkit.3.0.5-ubuntu64.tar.gz
       plugin: dump
-      build-packages:
-       - less
-       - tree
-       - libc6-dev
-       - zlib1g-dev
-       - libxml2-dev
-       - libbison-dev
-       - libfl-dev
-       - libssl-dev
-       - python3 # needed for checking the install and nothing else
-       - python3-dev # needed for checking the install and nothing else
-      stage-packages:
-       - flex
-       - openssl
-       - libcrypt1
-       - bison
-       - libxml2
-       - libc6 #Automatically Tuned Linear Algebra Software, documentation
+      stage-snaps:
+        - rjd-analysis-depend
       # filesets:
       #      binary:
       #      - sra-tools
